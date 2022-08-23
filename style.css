@@ -160,10 +160,10 @@ button:active {
 #ez {
     display: flex;
     flex-direction: column;
-    height: 100%;
-    padding: 5px;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    padding: 5px;
 } 
 
 @media(max-width: 500px) {

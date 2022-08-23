@@ -147,6 +147,8 @@ document.getElementById('info-btn').onclick = () => {
     }
 }
 
+
+
 function clear(e) {
     if (e === 128 || e === 'Clear: P128') {
         
