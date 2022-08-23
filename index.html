@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script defer src="init-firebase.js"></script>
+    <script defer src="main.js"></script>
+
+    <title id="TabName">Fire Messages 3.0</title>
+    <link id="TabIcon" rel="shortcut icon" href="">
+</head>
+
+<body>
+    <div id="chatbox-container">
+        <h1 id="title">Fire Message 3.0</h1>
+
+        <div id="infoShow" hidden>
+            <P>Info: (all commands are meant to by typed in Message input box and are case / space sensitive)</P>
+            <p>Change Tab Icon: type "Tab-Icon: {link}"</p>
+            <P>Change Tab Name: type "Tab-Name: {name}"</P>
+            <p>Clear Local Storage: type "Clear-LS"</p>
+            <p>Clear Chat: type "Clear: P{password}"</p>
+        </div>
+
+        <div id="all-messages">
+            <!-- @NOTE sample message -->
+            <!-- <div class="single-message">
+                <p class="single-message-username">andymina:</p>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Doloremque laboriosam dignissimos molestias ad illum odio
+                    dolor beatae dolore! Possimus laborum culpa debitis at
+                    obcaecati sit assumenda, placeat delectus reiciendis
+                    accusamus!
+                </p>
+            </div> -->
+        </div>
+
+        <div id="typing-container">
+            <form>
+                <div class="input-container">
+                    <label>Username:</label>
+                    <input type="text" id="username" />
+                </div>
+
+                <div class="input-container">
+                    <label>Message:</label>
+                    <input type="text" id="message" />
+                </div>
+            </form>
+            <div id="ez">
+                <button id="send-btn">Send</button>
+                <button id="info-btn">Info</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,184 @@
+/* 
+    @NOTE color palette generated with https://coolors.co
+    also using CSS variables to make things easier to change
+    in the future. learn more about CSS vars here:
+    https://www.w3schools.com/css/css3_variables.asp
+
+    primary: #16262E
+    secondary: #2E4756
+    accent: #3C7A89
+*/
+
+:root {
+    --primary: #1C2C35;
+    --secondary: #2C5763;
+    --accent: #63A9BB;
+}
+
+body {
+    /* size and colors */
+    height: 100vh;
+    background-color: var(--primary);
+    color: #fff;
+
+    /* flexbox styling */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* text */
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+#title {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#chatbox-container {
+    /*
+        @NOTE using responsive units (vw and vh) here.
+        learn more here: https://www.w3schools.com/cssref/css_units.asp
+    */
+    
+    /* size and colors */
+    /* width: 90vw;
+    height: 90vh; */
+    width: 92.5vw;
+    height: 92.5vh;
+    background-color: var(--secondary);
+    
+    /* CSS box model */
+    margin: 0 auto;
+    padding: 1%;
+    border-radius: 10px;
+
+    /* flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#all-messages {
+    /* size and colors */
+    width: 93%;
+    height: 70%;
+    background-color: #fff;
+    color: #000;
+
+    /* CSS box model */
+    border-radius: 10px;
+    margin: 1%;
+
+    /* visiblity */
+    overflow-wrap: normal;
+    overflow-y: auto;
+}
+
+#typing-container {
+    /* size and colors */
+    width: 93%;
+    background-color: var(--accent);
+    
+    /* CSS box model */
+    border-radius: 10px;
+    margin: 1%;
+    padding: 1%;
+
+    /* flexbox */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+form {
+    /* size and colors */
+    width: 80%;
+    height: 80%;
+
+    /* flexbox */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+form input {
+    width: 80%;
+    height: 80%;
+
+    font-size: 1.2em;
+    border-radius: 2px;
+}
+
+form label {
+    font-size: 1.2em;
+}
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2%;
+}
+
+button {
+    width: 25vw;
+    height: 5.5vw;
+
+    background-color: var(--secondary);
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    text-align: center; 
+    font-size: 1.2em;
+    margin: 1%;
+}
+
+button:hover {
+    background-color: var(--primary);
+    box-shadow: 2px 2px 2px #4d4d4d;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.single-message {
+    display: flex;
+}
+
+.single-message p {
+    margin: 1%;
+}
+
+.single-message-username {
+    font-weight: 600;
+}
+
+#ez {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+} 
+
+@media(max-width: 500px) {
+    #typing-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    #ez {
+        justify-content: center;
+        align-items: center;
+    }
+    button {
+        height: 12vw;
+        text-align: center;
+    }
+}
