@@ -2,6 +2,17 @@ const database = firebase.database().ref('Chat');
 
 
 
+let NotifP
+Notification.requestPermission().then(perm => { NotifP = perm })
+let Show
+let Notif
+document.addEventListener("visibilitychange", () => {
+    Show = document.visibilityState
+    if (Notif && Show != "hidden") Notif.close()
+})
+
+
+
 const allMessages = document.querySelector('#all-messages');
 const usernameElem = document.querySelector('#username');
 const messageElem = document.querySelector("#message");
@@ -88,6 +99,14 @@ function addMessageToBoard(rowData) {
 
     let singleMessage = makeSingleMessageHTML(data.USERNAME, data.MESSAGE);
     allMessages.append(singleMessage);
+    
+    if (NotifP === "granted" && Show === "hidden") {
+
+        Notif = new Notification(data.USERNAME, {
+            body: data.MESSAGE,
+            tag: "newM",
+        })
+    }
 }
 
 
@@ -133,6 +152,7 @@ form.onkeyup = (event) => {
         updateDB(event);
     }
 }
+
 
 
 let infoShow = false;
