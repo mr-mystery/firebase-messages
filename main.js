@@ -4,6 +4,7 @@ const database = firebase.database().ref('Chat');
 
 let NotifP
 Notification.requestPermission().then(perm => { NotifP = perm })
+
 let Show
 let Notif
 document.addEventListener("visibilitychange", () => {
