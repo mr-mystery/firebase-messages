@@ -15,19 +15,21 @@
     <script defer src="main.js"></script>
 
     <title id="TabName">Fire Messages 3.0</title>
-    <link id="TabIcon" rel="shortcut icon" href="">
+    <link id="TabIcon" rel="shortcut icon" href="fire.png">
 </head>
 
 <body>
     
     <div id="chatbox-container">
+
         <h1 id="title">Fire Message 3.0</h1>
 
         <div id="infoShow" hidden>
             <P>Info: (all commands are meant to by typed in Message input box and are case / space sensitive)</P>
             <p>Change Tab Icon: type "Tab-Icon: {link}"</p>
             <P>Change Tab Name: type "Tab-Name: {name}"</P>
-            <p>Clear Local Storage: type "Clear-LS"</p>
+            <p>Toggle Theme: type "Theme"</p>
+            <p>Clear Local Storage (Reset): type "Clear-LS"</p>
             <p>Clear Chat: type "Clear: P{password}"</p>
         </div>
 
@@ -46,6 +48,7 @@
         </div>
 
         <div id="typing-container">
+
             <form>
                 <div class="input-container">
                     <label>Username:</label>
@@ -57,11 +60,14 @@
                     <input type="text" id="message" />
                 </div>
             </form>
+
             <div id="ez">
                 <button id="send-btn">Send</button>
                 <button id="info-btn">Info</button>
             </div>
+
         </div>
+
     </div>
 
 </body>

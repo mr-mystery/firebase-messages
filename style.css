@@ -10,24 +10,18 @@
 */
 
 :root {
-    --primary: #1C2C35;
-    --secondary: #2C5763;
-    --accent: #63A9BB;
+    --primary: #16262E;
+    --secondary: #2E4756;
+    --accent: #3C7A89;
 }
 
 body {
-    /* size and colors */
-    height: 100vh;
-    background-color: var(--primary);
     color: #fff;
 
-    /* flexbox styling */
     display: flex;
     justify-content: center;
     align-items: center;
 
-    /* text */
-    font-family: Arial, Helvetica, sans-serif;
     margin: 0;
 }
 
@@ -37,24 +31,15 @@ body {
 }
 
 #chatbox-container {
-    /*
-        @NOTE using responsive units (vw and vh) here.
-        learn more here: https://www.w3schools.com/cssref/css_units.asp
-    */
-    
-    /* size and colors */
-    /* width: 90vw;
-    height: 90vh; */
-    width: 92.5vw;
-    height: 92.5vh;
+    font-family: Arial, Helvetica, sans-serif;
+
+    width: 100vw;
+    height: 100vh;
     background-color: var(--secondary);
     
-    /* CSS box model */
     margin: 0 auto;
-    padding: 1%;
-    border-radius: 10px;
+    padding: 0.1%;
 
-    /* flexbox */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,43 +47,36 @@ body {
 }
 
 #all-messages {
-    /* size and colors */
     width: 93%;
     height: 70%;
     background-color: #fff;
     color: #000;
 
-    /* CSS box model */
     border-radius: 10px;
-    margin: 1%;
+    padding: 1%;
+    /* margin: 1%; */
 
-    /* visiblity */
     overflow-wrap: normal;
     overflow-y: auto;
 }
 
 #typing-container {
-    /* size and colors */
     width: 93%;
     background-color: var(--accent);
     
-    /* CSS box model */
     border-radius: 10px;
     margin: 1%;
     padding: 1%;
 
-    /* flexbox */
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
 form {
-    /* size and colors */
     width: 80%;
     height: 80%;
 
-    /* flexbox */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -124,8 +102,11 @@ form label {
 }
 
 button {
+    max-width: 300px;
     width: 25vw;
+    max-height: 100px;
     height: 5.5vw;
+    min-height: 40px;
 
     background-color: var(--secondary);
     border: none;
@@ -134,13 +115,13 @@ button {
     text-align: center; 
     font-size: 1.2em;
     margin: 1%;
-}
 
+    transition: 100ms;
+}
 button:hover {
-    background-color: var(--primary);
+    opacity: 0.7;
     box-shadow: 2px 2px 2px #4d4d4d;
 }
-
 button:active {
     transform: scale(0.98);
 }
@@ -148,11 +129,9 @@ button:active {
 .single-message {
     display: flex;
 }
-
 .single-message p {
     margin: 1%;
 }
-
 .single-message-username {
     font-weight: 600;
 }
@@ -166,7 +145,7 @@ button:active {
     padding: 5px;
 } 
 
-@media(max-width: 500px) {
+@media(max-width: 550px) {
     #typing-container {
         display: flex;
         flex-direction: column;
@@ -174,15 +153,6 @@ button:active {
         align-items: center;
     }
     #ez {
-        justify-content: center;
-        align-items: center;
-    }
-    button {
-        height: 12vw;
-        text-align: center;
+        flex-direction: row;
     }
 }
-
-/* #blue {
-    background-color: #272d33c2;
-} */

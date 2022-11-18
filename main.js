@@ -2,6 +2,15 @@ const database = firebase.database().ref('Chat');
 
 
 
+const allMessages = document.querySelector('#all-messages');
+const usernameElem = document.querySelector('#username');
+const messageElem = document.querySelector("#message");
+const sendButton = document.querySelector('#send-btn');
+sendButton.onclick = updateDB;
+// document.querySelector('#send-btn').onclick = updateDB
+
+
+
 let NotifP
 Notification.requestPermission().then(perm => { NotifP = perm })
 
@@ -14,12 +23,21 @@ document.addEventListener("visibilitychange", () => {
 
 
 
-const allMessages = document.querySelector('#all-messages');
-const usernameElem = document.querySelector('#username');
-const messageElem = document.querySelector("#message");
-const sendButton = document.querySelector('#send-btn');
-sendButton.onclick = updateDB;
-// document.querySelector('#send-btn').onclick = updateDB
+function toggleTheme(t) {
+    if (t === true) {
+        allMessages.style['background-color'] = '#36393F';
+        allMessages.style['color'] = "#fff";
+    }
+    else {
+        allMessages.style['background-color'] = '#fff';
+        allMessages.style['color'] = "#000";
+    }
+};
+let theme = false;
+if (localStorage.getItem('theme') != null){
+    theme = localStorage.getItem('theme');
+    toggleTheme(theme);
+}
 
 
 
@@ -72,6 +90,14 @@ function updateDB(event) {
 
     else if (data.MESSAGE === 'Clear-LS') {
         localStorage.clear();
+
+        messageElem.value = '';
+    }
+
+    else if (data.MESSAGE === "Theme") {
+        theme = (theme != true)
+        window.localStorage.setItem('theme', theme)
+        toggleTheme(theme)
 
         messageElem.value = '';
     }
