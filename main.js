@@ -7,24 +7,24 @@ const usernameElem = document.querySelector('#username');
 const messageElem = document.querySelector("#message");
 const sendButton = document.querySelector('#send-btn');
 sendButton.onclick = updateDB;
-// document.querySelector('#send-btn').onclick = updateDB
+// document.querySelector('#send-btn').onclick = updateDB;
 
 
 
-let NotifP
-Notification.requestPermission().then(perm => { NotifP = perm })
+let NotifP;
+Notification.requestPermission().then(perm => { NotifP = perm });
 
-let Show
-let Notif
+let Show;
+let Notif;
 document.addEventListener("visibilitychange", () => {
-    Show = document.visibilityState
-    if (Notif && Show != "hidden") Notif.close()
+    Show = document.visibilityState;
+    if (Notif && Show != "hidden") Notif.close();
 })
 
 
 
 function toggleTheme(t) {
-    if (t === true) {
+    if (t === "1") {
         allMessages.style['background-color'] = '#36393F';
         allMessages.style['color'] = "#fff";
     }
@@ -32,10 +32,19 @@ function toggleTheme(t) {
         allMessages.style['background-color'] = '#fff';
         allMessages.style['color'] = "#000";
     }
+
+    if (t === "1") {
+        theme = "0";
+    }
+    else {
+        theme = "1";
+    }
+
+    return t;
 };
-let theme = false;
+let theme = "0";
 if (localStorage.getItem('theme') != null){
-    theme = localStorage.getItem('theme');
+    theme = window.localStorage.getItem('theme');
     toggleTheme(theme);
 }
 
@@ -95,10 +104,8 @@ function updateDB(event) {
     }
 
     else if (data.MESSAGE === "Theme") {
-        theme = (theme != true)
-        window.localStorage.setItem('theme', theme)
-        toggleTheme(theme)
-
+        window.localStorage.setItem('theme', toggleTheme(theme));
+    
         messageElem.value = '';
     }
 
