@@ -1,3 +1,13 @@
+const firebaseConfig = {
+    apiKey: "AIzaSyCYre4RH2FESi87HaVMCoYu7mWa7S_1TNQ",
+    authDomain: "firemessages-b41f5.firebaseapp.com",
+    databaseURL: "https://firemessages-b41f5-default-rtdb.firebaseio.com",
+    projectId: "firemessages-b41f5",
+    storageBucket: "firemessages-b41f5.appspot.com",
+    messagingSenderId: "675067133657",
+    appId: "1:675067133657:web:b9432ee0dfaaf67d8fc8c8"
+};
+firebase.initializeApp(firebaseConfig);
 const database = firebase.database().ref('Chat');
 
 
@@ -18,8 +28,8 @@ let Show;
 let Notif;
 document.addEventListener("visibilitychange", () => {
     Show = document.visibilityState;
-    if (Notif && Show != "hidden") Notif.close();
-})
+    if (Notif && Show != "hidden") {Notif.close()};
+});
 
 
 
@@ -31,31 +41,31 @@ function toggleTheme(t) {
     else {
         allMessages.style['background-color'] = '#fff';
         allMessages.style['color'] = "#000";
-    }
+    };
 
     if (t === "1") {
         theme = "0";
     }
     else {
         theme = "1";
-    }
+    };
 
     return t;
 };
-let theme = "0";
+let theme = "1";
 if (localStorage.getItem('theme') != null){
     theme = window.localStorage.getItem('theme');
     toggleTheme(theme);
-}
+};
 
 
 
 if (localStorage.getItem("TabName") != null) {
     document.title = window.localStorage.getItem('TabName');
-}
+};
 if (localStorage.getItem('TabIcon') != null) {
     document.getElementById('TabIcon').setAttribute('href', window.localStorage.getItem('TabIcon'));
-}
+};
 
 
 
@@ -67,56 +77,47 @@ function updateDB(event) {
     let data = {
         USERNAME: usernameElem.value,
         MESSAGE: messageElem.value,
-    }
+    };
 
     if (data.USERNAME === '' || data.MESSAGE === '') {
         alert('Please enter Username and/or Message');
     }
 
-    else if (data.MESSAGE === "Clear: P128") {
-        clear(data.MESSAGE);
-        
+    else if (data.MESSAGE.toLowerCase() === '/clear-p128') {
+        clear(128);
         messageElem.value = '';
     }
 
-    else if (data.MESSAGE.includes('Tab-Icon: ') === true) {
-        x = data.MESSAGE.split("Tab-Icon: ").pop();
+    else if (data.MESSAGE.includes('/Tab-Icon: ')) {
+        x = data.MESSAGE.split("/Tab-Icon: ").pop();
         document.getElementById('TabIcon').setAttribute('href', x);
-
         window.localStorage.setItem('TabIcon', x);
-
         messageElem.value = '';
     }
 
-    else if (data.MESSAGE.includes('Tab-Name: ') === true) {
-        x = data.MESSAGE.split("Tab-Name: ").pop();
+    else if (data.MESSAGE.includes('/Tab-Name: ')) {
+        x = data.MESSAGE.split("/Tab-Name: ").pop();
         document.title = x;
-
         window.localStorage.setItem('TabName', x);
-
         messageElem.value = '';
     }
 
-    else if (data.MESSAGE === 'Clear-LS') {
+    else if (data.MESSAGE.toLowerCase() === '/clear-ls') {
         localStorage.clear();
-
         messageElem.value = '';
     }
 
-    else if (data.MESSAGE === "Theme") {
+    else if (data.MESSAGE.toLowerCase() === '/theme') {
         window.localStorage.setItem('theme', toggleTheme(theme));
-    
         messageElem.value = '';
     }
 
     else {
         console.log(data);
-
         database.push(data);
-
         messageElem.value = '';
-    }
-}
+    };
+};
 
 
 
@@ -133,21 +134,20 @@ function addMessageToBoard(rowData) {
 
     let singleMessage = makeSingleMessageHTML(data.USERNAME, data.MESSAGE);
     allMessages.append(singleMessage);
-    
-    if (NotifP === "granted" && Show === "hidden") {
 
+    if (NotifP === "granted" && Show === "hidden") {
         Notif = new Notification(data.USERNAME, {
             body: data.MESSAGE,
             tag: "newM",
-        })
-    }
-}
+        });
+    };
+};
 
 
 
 function isImage(url) {
     return /\.(jpg|jpeg|png|webp|avif|gif|svg)$/.test(url);
-}
+};
 
 
 
@@ -169,23 +169,22 @@ function makeSingleMessageHTML(usernameTxt, messageTxt) {
     else {
         messageP = document.createElement('p');
         messageP.innerHTML = messageTxt;
-    }
+    };
 
     parentDiv.append(messageP);
 
     return parentDiv;
-}
+};
 
 
 
 const form = document.querySelector('form');
 form.onkeyup = (event) => {
     event.preventDefault();
-
     if (event.keyCode === 13) {
         updateDB(event);
-    }
-}
+    };
+};
 
 
 
@@ -198,27 +197,24 @@ document.getElementById('info-btn').onclick = () => {
     else {
         document.getElementById('infoShow').style.display = "none";
         infoShow = false;
-    }
-}
+    };
+};
 
 
 
 function clear(e) {
-    if (e === 128 || e === 'Clear: P128') {
-        
+    if (e === 128) {
         firebase.database().ref('Chat').remove()
-            
         .then(function () {
-                alert("Remove succeeded.");
-                let data = {
-                    USERNAME: 'Server',
-                    MESSAGE: 'Chat Cleared',
-                }
-                database.push(data);
-            })
-            
-            .catch(function (error) {
-                alert("Remove failed: " + error.message);
-            })
-    }
-}
+            alert("Remove succeeded.");
+            let data = {
+                USERNAME: 'Server',
+                MESSAGE: 'Chat Cleared',
+            };
+            database.push(data);
+        })
+        .catch(function (error) {
+            alert("Remove failed: " + error.message);
+        })
+    };
+};

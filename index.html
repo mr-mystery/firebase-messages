@@ -11,7 +11,6 @@
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <script defer src="init-firebase.js"></script>
     <script defer src="main.js"></script>
 
     <title id="TabName">Fire Messages 3.0</title>
@@ -26,11 +25,11 @@
 
         <div id="infoShow" hidden>
             <P>Info: (all commands are meant to by typed in Message input box and are case / space sensitive)</P>
-            <p>Change Tab Icon: type "Tab-Icon: {link}"</p>
-            <P>Change Tab Name: type "Tab-Name: {name}"</P>
-            <p>Toggle Theme: type "Theme"</p>
-            <p>Clear Local Storage (Reset): type "Clear-LS"</p>
-            <p>Clear Chat: type "Clear: P{password}"</p>
+            <p>Change Tab Icon: type "/Tab-Icon: {link}"</p>
+            <P>Change Tab Name: type "/Tab-Name: {name}"</P>
+            <p>Toggle Theme: type "/Theme"</p>
+            <p>Clear Local Storage (Reset): type "/Clear-LS"</p>
+            <p>Clear Chat: type "/Clear-P{password}"</p>
         </div>
 
         <div id="all-messages">
@@ -61,7 +60,7 @@
                 </div>
             </form>
 
-            <div id="ez">
+            <div id="buttons">
                 <button id="send-btn">Send</button>
                 <button id="info-btn">Commands</button>
             </div>
