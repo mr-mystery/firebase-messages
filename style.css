@@ -13,37 +13,30 @@
     --primary: #16262E;
     --secondary: #2E4756;
     --accent: #3C7A89;
+    --font: Arial, Helvetica, sans-serif;
 }
 
 body {
-    color: #fff;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    margin: 0;
-}
-
-#title {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#chatbox-container {
-    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-family: var(--font);
 
     width: 100vw;
     height: 100vh;
-    background-color: var(--secondary);
-    
+
     margin: 0 auto;
-    padding: 0.1%;
+    padding: 0 auto;
+
+    background-color: var(--secondary);
 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#title {
+    text-align: center;
+    font-family: var(--font);
 }
 
 #all-messages {
@@ -74,6 +67,16 @@ body {
     align-items: center;
 }
 
+.single-message {
+    display: flex;
+}
+.single-message p {
+    margin: 1%;
+}
+.single-message-username {
+    font-weight: 600;
+}
+
 form {
     width: 80%;
     height: 80%;
@@ -102,21 +105,27 @@ form label {
     margin: 2%;
 }
 
-button {
-    max-width: 300px;
-    width: 25vw;
+#buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 5px;
+}
 
-    max-height: 75px;
-    height: 5.5vw;
-    min-height: 40px;
+button {
+    width: clamp(150px, 25vw, 300px);
+    height: clamp(75px, 5.5vw, 40px);
+    margin: 1%;
 
     background-color: var(--secondary);
     border: none;
     border-radius: 10px;
+
     color: #fff;
     text-align: center; 
     font-size: 1.2em;
-    margin: 1%;
 
     transition: 100ms;
 }
@@ -127,25 +136,6 @@ button:hover {
 button:active {
     transform: scale(0.98);
 }
-
-.single-message {
-    display: flex;
-}
-.single-message p {
-    margin: 1%;
-}
-.single-message-username {
-    font-weight: 600;
-}
-
-#buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 5px;
-} 
 
 @media(max-width: 550px) {
     #typing-container {

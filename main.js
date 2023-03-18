@@ -1,3 +1,4 @@
+// Realtime Database: https://firemessages-b41f5-default-rtdb.firebaseio.com/
 const firebaseConfig = {
     apiKey: "AIzaSyCYre4RH2FESi87HaVMCoYu7mWa7S_1TNQ",
     authDomain: "firemessages-b41f5.firebaseapp.com",
@@ -17,7 +18,6 @@ const usernameElem = document.querySelector('#username');
 const messageElem = document.querySelector("#message");
 const sendButton = document.querySelector('#send-btn');
 sendButton.onclick = updateDB;
-// document.querySelector('#send-btn').onclick = updateDB;
 
 
 
@@ -37,16 +37,22 @@ function toggleTheme(t) {
     if (t === "1") {
         allMessages.style['background-color'] = '#36393F';
         allMessages.style['color'] = "#fff";
-    }
-    else {
+        usernameElem.style['background-color'] = '#36393F';
+        usernameElem.style['color'] = "#fff";
+        messageElem.style['background-color'] = '#36393F';
+        messageElem.style['color'] = "#fff";
+    } else {
         allMessages.style['background-color'] = '#fff';
         allMessages.style['color'] = "#000";
+        usernameElem.style['background-color'] = '#fff';
+        usernameElem.style['color'] = "#000";
+        messageElem.style['background-color'] = '#fff';
+        messageElem.style['color'] = "#000";
     };
 
     if (t === "1") {
         theme = "0";
-    }
-    else {
+    } else {
         theme = "1";
     };
 
@@ -81,42 +87,40 @@ function updateDB(event) {
 
     if (data.USERNAME === '' || data.MESSAGE === '') {
         alert('Please enter Username and/or Message');
+        return;
     }
 
     else if (data.MESSAGE.toLowerCase() === '/clear-p128') {
         clear(128);
-        messageElem.value = '';
     }
 
     else if (data.MESSAGE.includes('/Tab-Icon: ')) {
         x = data.MESSAGE.split("/Tab-Icon: ").pop();
         document.getElementById('TabIcon').setAttribute('href', x);
         window.localStorage.setItem('TabIcon', x);
-        messageElem.value = '';
     }
 
     else if (data.MESSAGE.includes('/Tab-Name: ')) {
         x = data.MESSAGE.split("/Tab-Name: ").pop();
         document.title = x;
         window.localStorage.setItem('TabName', x);
-        messageElem.value = '';
     }
 
     else if (data.MESSAGE.toLowerCase() === '/clear-ls') {
         localStorage.clear();
-        messageElem.value = '';
+        window.location = "./"
     }
 
     else if (data.MESSAGE.toLowerCase() === '/theme') {
         window.localStorage.setItem('theme', toggleTheme(theme));
-        messageElem.value = '';
     }
 
     else {
         console.log(data);
         database.push(data);
-        messageElem.value = '';
     };
+
+    messageElem.value = '';
 };
 
 
@@ -165,8 +169,7 @@ function makeSingleMessageHTML(usernameTxt, messageTxt) {
     if (isImage(messageTxt) === true) {
         messageP = document.createElement('img');
         messageP.src = messageTxt;
-    }
-    else {
+    } else {
         messageP = document.createElement('p');
         messageP.innerHTML = messageTxt;
     };
@@ -193,8 +196,7 @@ document.getElementById('info-btn').onclick = () => {
     if (infoShow == false) {
         document.getElementById('infoShow').style.display = "block";
         infoShow = true;
-    }
-    else {
+    } else {
         document.getElementById('infoShow').style.display = "none";
         infoShow = false;
     };
