@@ -108,7 +108,7 @@ function updateDB(event) {
 
     else if (data.MESSAGE.toLowerCase() === '/clear-ls') {
         localStorage.clear();
-        window.location = "./"
+        window.location = "./";
     }
 
     else if (data.MESSAGE.toLowerCase() === '/theme') {
@@ -217,6 +217,6 @@ function clear(e) {
         })
         .catch(function (error) {
             alert("Remove failed: " + error.message);
-        })
+        });
     };
 };

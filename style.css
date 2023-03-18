@@ -4,9 +4,9 @@
     in the future. learn more about CSS vars here:
     https://www.w3schools.com/css/css3_variables.asp
 
-    primary: #16262E
-    secondary: #2E4756
-    accent: #3C7A89
+    --primary: #16262E;
+    --secondary: #2E4756;
+    --accent: #3C7A89;
 */
 
 :root {
